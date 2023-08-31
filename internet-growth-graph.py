@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 # Load CSV file
 internet_growth = pd.read_csv('Final.csv')
+gdp_growth = pd.read_csv("gdp_growth.csv")
 
 index = 0
 
@@ -35,3 +36,32 @@ while True:
     index += 41
     if index > 88:
         break
+
+# # Create the line graph with two y-labels and different colors
+#     fig, ax1 = plt.subplots(figsize=(10, 6))
+#
+#     # Plot Internet Users Increase with blue color
+#     ax1.plot(['Year'], country_internet_data['Percentage Increase'], color='blue', marker='', label='Internet '
+#                                                                                                         'Users '
+#                                                                                                         'Increase')
+#     ax1.set_xlabel('Year')
+#     ax1.set_ylabel('Internet Users Increase (%)', color='blue')
+#     ax1.tick_params(axis='y', labelcolor='blue')
+#
+#     ax2 = ax1.twinx()  # Create a second y-axis for GDP Increase
+#
+#     # Plot GDP Increase with red color
+#     ax2.plot(country_gdp_data.columns[start_year:end_year],
+#              country_gdp_data.iloc[country_gdp_data.index[country_gdp_data['Country Name'] == country],
+#              start_year:end_year], color='red',
+#              marker='o', label='GDP Increase')
+#     ax2.set_ylabel('GDP Increase', color='red')
+#     ax2.tick_params(axis='y', labelcolor='red')
+#
+#     # Title and Legends
+#     plt.title(f'Internet Users and GDP Increase for {country} ({start_year}-{end_year})')
+#     fig.tight_layout()
+#     fig.legend(loc='upper left')
+#
+#     plt.grid(True)
+#     plt.show()
