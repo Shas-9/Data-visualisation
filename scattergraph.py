@@ -56,4 +56,3 @@ plt.legend()
 plt.grid(True)
 plt.show()
 print(correlation_coefficient)  # -0.07085753072819657
-
