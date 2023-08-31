@@ -20,4 +20,4 @@ new_df = pd.DataFrame(peak_growth_data, columns=new_columns)
 # Save the new DataFrame to a CSV file
 new_df.to_csv('peak_growth_data.csv', index=False)
 
-print("New CSV file 'peak_growth_data.csv' created.")
+print("New CSV file 'peak_growth.csv' created.")
