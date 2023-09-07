@@ -23,7 +23,8 @@ for country in internet_growth['Entity'].unique():
     peak_gdp = country_gdp_data.max().max()
     year_peak_gdp = country_gdp_data.max().idxmax()
     peak_internet = country_internet_data['Percentage Increase'].max()
-    year_peak_internet = country_internet_data.loc[country_internet_data['Percentage Increase'] == peak_internet, 'Year']
+    year_peak_internet = country_internet_data.loc[
+        country_internet_data['Percentage Increase'] == peak_internet, 'Year']
     peak_growth_data.append([country, peak_internet, year_peak_internet, peak_gdp, year_peak_gdp])
 
 # Create a new DataFrame
