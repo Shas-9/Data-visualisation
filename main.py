@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import mplcursors
 import numpy as np
 
-
 # Load CSV file
 internet_growth = pd.read_csv('Final.csv')
 gdp_growth = pd.read_csv("gdp_growth.csv")
@@ -33,12 +32,14 @@ for country in internet_growth['Entity'].unique():
     peak_gdp = country_gdp_data.max().max()
     year_peak_gdp = country_gdp_data.max().idxmax()
     peak_internet = country_internet_data['Percentage Increase'].max()
-    year_peak_internet = country_internet_data.loc[country_internet_data['Percentage Increase'] == peak_internet, 'Year']
+    year_peak_internet = country_internet_data.loc[
+        country_internet_data['Percentage Increase'] == peak_internet, 'Year']
     if not year_peak_internet.empty:
         year_peak_internet = year_peak_internet.iloc[0]
     else:
         year_peak_internet = 0
     peak_growth_data.append([country, peak_internet, year_peak_internet, peak_gdp, year_peak_gdp, capita_data])
+
 
 # Create a new DataFrame
 columns = ['country', 'peak internet', 'year peak internet', 'peak gdp', 'year peak gdp', 'current capita']
@@ -57,8 +58,7 @@ peak_dataframe['year peak internet'] = peak_dataframe['year peak internet'].asty
 # Sort the DataFrame by the 'Year' column
 peak_dataframe = peak_dataframe.sort_values(by='year peak internet')
 
-
-# Calculate covariance
+# Calculate correlation coefficient
 correlation_coefficient = peak_dataframe['peak gdp'].corr(peak_dataframe['peak internet'])
 
 # Create a scatter plot
@@ -66,7 +66,7 @@ plt.figure(figsize=(10, 6))
 scatter = plt.scatter(peak_dataframe['peak internet'], peak_dataframe['peak gdp'], alpha=0.7, label='Countries')
 plt.xlabel('Highest percentage growth in internet users')
 plt.ylabel('Highest percentage growth in gdp')
-
+plt.title("Highest % growth in GDP vs Highest % growth in internet users")
 
 # Create custom bins for grouping by every 5 years
 bins = range(start_year, end_year + 5, 5)  # +6 to ensure the last bin includes the max year
@@ -84,8 +84,8 @@ bar = grouped_data.plot(kind='bar', color='blue')
 bar.set_xticklabels(custom_labels)
 bar.set_xlabel('Year of highest growth in internet users')
 bar.set_ylabel('Current GDP per capita')
+plt.title("Current GDP per capita and year of highest internet adoption")
 plt.xticks(rotation=0)
-
 
 # Add tooltips using mplcursors
 cursor = mplcursors.cursor(scatter, hover=True)
